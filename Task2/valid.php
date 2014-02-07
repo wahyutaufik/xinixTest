@@ -28,15 +28,53 @@ function year(){
 	echo "</select>";
 }
 
-function validEmpty($fieldName = null){
-	
-	if ($_POST){
-		$_POST[$fieldName] = trim($_POST[$fieldName]);
-		
-		if(empty($_POST[$fieldName])){
-			echo ucfirst($fieldName) . ' Belum di Isi';
-			return;
+function validEmpty($fieldName = null) {
+	if ($_POST) {
+	$_POST[$fieldName] = trim($_POST[$fieldName]);
+
+		if(empty($_POST[$fieldName])) {
+			return '*' . ucfirst($fieldName) . ' Required';
 		}
 	}
+	return '';
 }
 
+function validLength($fieldName = null) {
+	if ($_POST) {
+		if ((strlen($_POST[$fieldName])) < 3) {
+			return '*' . ucfirst($fieldName) . ' Min. 3 Characters';
+		} 
+		elseif ((strlen($_POST[$fieldName])) > 50) {
+			return '*' . ucfirst($fieldName) . ' Max. 50 Character';
+		}	
+	}
+	return '';
+}
+
+function validString($fieldName){
+	if ($_POST) {
+		if (is_numeric($_POST[$fieldName])) {
+			return '*' . ucfirst($fieldName) . ' Must be Alphabet';		
+		}
+	}
+	return '';
+}
+
+function validName(){
+	$msg = '';
+	if($_POST){
+		if(validEmpty('name') != ''){
+			$msg = validEmpty('name');
+			return $msg;
+		} 
+		if(validLength('name') != ''){
+		$msg = validLength('name');
+		return $msg;
+		}
+		if(validString('name') != ''){
+		$msg = validString('name');
+		return $msg;
+		}
+	}
+return $msg;
+}

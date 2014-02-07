@@ -39,14 +39,7 @@ require ('valid.php')
 		    	<label class="col-sm-12 control-label">Fullname</label>
 		    	<div class="col-xs-10">
 		      		<input class="form-control" placeholder="Fullname" name="name" value="<?php echo !isset($_POST['name']) ? '' : trim($_POST['name']) ?>">
-		      		<span class="error"><?php validEmpty('name') ?></span>
-		    	</div>
-		  	</div>
-		  	<div class="form-group">
-		    	<label class="col-sm-12 control-label">Username</label>
-		    	<div class="col-xs-10">
-		      		<input class="form-control" placeholder="Username" name="user" value="<?php echo !isset($_POST['user']) ? '' : trim($_POST['user']) ?>">
-		      		<span class="error"><?php echo validEmpty('user'); ?></span>
+		      		<span class="error"><?php echo validName('name') ?></span>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -54,6 +47,13 @@ require ('valid.php')
 		    	<div class="col-xs-10">
 		      		<input class="form-control" placeholder="Email" name="email" value="<?php echo !isset($_POST['email']) ? '' : trim($_POST['email']) ?>">
 		      		<span class="error"><?php echo validEmpty('email'); ?></span>
+		    	</div>
+		  	</div>
+		  	<div class="form-group">
+		    	<label class="col-sm-12 control-label">Username</label>
+		    	<div class="col-xs-10">
+		      		<input class="form-control" placeholder="Username" name="user" value="<?php echo !isset($_POST['user']) ? '' : trim($_POST['user']) ?>">
+		      		<span class="error"><?php echo validEmpty('user'); ?></span>
 		    	</div>
 		  	</div>
 		  	<div class="form-group">
@@ -82,11 +82,11 @@ require ('valid.php')
 		    	<label class="col-sm-12 control-label">Sex</label>
 		    	<div class="col-xs-10">
 				  	<label>
-				    	<input type="radio" name="sex" id="optionsRadios1" value="<?php if (isset($_POST['sex']) && $_POST['sex']=="male") echo "checked";?>">
+				    	<input type="radio" name="sex" <?php if (isset($_POST['sex']) && $_POST['sex'] == "male") echo "checked"; ?> value="male" >
 				    	Male
 				  	</label>
 				  	<label>
-				    	<input type="radio" name="sex" id="optionsRadios2" value="<?php if (isset($_POST['sex']) && $_POST['sex']=="female") echo "checked";?>">
+				    	<input type="radio" name="sex" <?php if (isset($_POST['sex']) && $_POST['sex'] == "female") echo "checked"; ?> value="female" >
 				    	Female
 				  	</label>
 		      		<span class="error"><?php echo validEmpty('sex'); ?></span>
